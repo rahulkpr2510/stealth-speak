@@ -7,12 +7,6 @@ import { JWT } from 'next-auth/jwt';
 import { Session } from 'next-auth';
 import { User } from 'next-auth';
 
-// Define the structure of credentials
-interface Credentials {
-  identifier: string;
-  password: string;
-}
-
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
