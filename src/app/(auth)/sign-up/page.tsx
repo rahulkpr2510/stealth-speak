@@ -72,7 +72,7 @@ export default function SignUpForm() {
         } catch (error) {
             console.error("Error in signing up the user", error)
             const axiosError = error as AxiosError<ApiResponse>
-            let errorMessage  = axiosError.response?.data.message || "Something went wrong while signing up the user !!"
+            const errorMessage  = axiosError.response?.data.message || "Something went wrong while signing up the user !!"
             toast({
                 title: "SignUp Failed !!",
                 description: errorMessage,
@@ -139,7 +139,7 @@ export default function SignUpForm() {
                                 <FormControl>
                                     <Input placeholder="Email" {...field}/>
                                 </FormControl>
-                                <p className="text-gray-400 text-sm">We'll send you a verification code</p>
+                                <p className="text-gray-400 text-sm">We will send you a verification code</p>
                             </FormItem>
                         )}
                         />

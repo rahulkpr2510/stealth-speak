@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import * as z from "zod"
 import axios, { AxiosError } from 'axios'
 import { ApiResponse } from '@/types/ApiResponse'
-import { Form, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Form, FormField, FormItem} from '@/components/ui/form'
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@/components/ui/input-otp'
 import { Button } from '@/components/ui/button'
 
@@ -41,7 +41,7 @@ function VerifyAccount() {
         } catch (error) {
             console.error("Error in verifying the user", error)
             const axiosError = error as AxiosError<ApiResponse>
-            let errorMessage = axiosError.response?.data.message || "Something went wrong while verifying the user !!"
+            const errorMessage = axiosError.response?.data.message || "Something went wrong while verifying the user !!"
             toast({
                 title: "Verification Failed !!",
                 description: errorMessage,
