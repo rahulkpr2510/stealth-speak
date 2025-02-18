@@ -3,9 +3,6 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/dbConnect';
 import UserModel from '@/models/user.model';
-import { JWT } from 'next-auth/jwt';
-import { Session } from 'next-auth';
-import { User } from 'next-auth';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,16 +13,13 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials: Record<"email" | "password", string> | undefined): Promise<User | null> {
-        if (!credentials) {
-          throw new Error('Missing credentials');
-        }
+      async authorize(credentials: any): Promise<any> {
         await dbConnect();
         try {
           const user = await UserModel.findOne({
             $or: [
-              { email: credentials.email },
-              { username: credentials.email },
+              { email: credentials.identifier },
+              { username: credentials.identifier },
             ],
           });
           if (!user) {
@@ -39,18 +33,18 @@ export const authOptions: NextAuthOptions = {
             user.password
           );
           if (isPasswordCorrect) {
-            return user as User;
+            return user;
           } else {
             throw new Error('Incorrect password');
           }
-        } catch (err) {
-          throw new Error((err as Error).message);
+        } catch (err: any) {
+          throw new Error(err);
         }
       },
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user?: User }) {
+    async jwt({ token, user }) {
       if (user) {
         token._id = user._id?.toString(); // Convert ObjectId to string
         token.isVerified = user.isVerified;
@@ -59,7 +53,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token }: { session: Session; token: JWT }) {
+    async session({ session, token }) {
       if (token) {
         session.user._id = token._id as string;
         session.user.isVerified = token.isVerified as boolean;
