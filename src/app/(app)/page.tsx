@@ -20,7 +20,7 @@ export default function Home() {
           Explore the Power of Anonymous Feedback
           </h1>
           <p className="mt-3 md:mt-4 text-base md:text-lg">
-          "Stealth Speak – Honest Voices, Hidden Identities."
+          Stealth Speak – Honest Voices, Hidden Identities.
           </p>
         </section>
 
