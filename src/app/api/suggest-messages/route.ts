@@ -10,8 +10,7 @@ export async function POST() {
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        const text = response.text(); 
-        console.log(text) // Get AI-generated response
+        const text = response.text();
 
         return new Response(text, {
             status: 200,

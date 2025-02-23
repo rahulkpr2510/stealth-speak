@@ -134,7 +134,7 @@ function PublicProfile() {
                     <CardHeader>
                         <h3 className="text-xl font-semibold text-center">Suggested Messages</h3>
                     </CardHeader>
-                    <CardContent className="flex flex-col space-y-4">
+                    <CardContent className="flex flex-col space-y-4 items-center">
                         {error ? (
                             <p className="text-red-500">{error}</p>
                         ) : (
@@ -142,7 +142,7 @@ function PublicProfile() {
                                 <Button
                                     key={index}
                                     variant="outline"
-                                    className="mb-2 border-black/[0.15] border-2 rounded-2xl"
+                                    className="mb-2 border-black/[0.25] border-2 rounded-2xl text-center break-words whitespace-normal px-6 py-3 h-auto"
                                     onClick={() => handleMessageClick(message)}
                                 >
                                     {message}
