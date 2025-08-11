@@ -1,5 +1,5 @@
 {
-  "name": "mystery-message",
+  "name": "sstealth-speak",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,7 +19,7 @@
     "@radix-ui/react-switch": "^1.1.3",
     "@radix-ui/react-toast": "^1.2.6",
     "@react-email/components": "^0.0.33",
-    "ai": "^4.1.41",
+    "ai": "^4.3.17",
     "axios": "^1.7.9",
     "bcryptjs": "^3.0.0",
     "class-variance-authority": "^0.7.1",
